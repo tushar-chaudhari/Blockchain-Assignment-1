@@ -44,11 +44,12 @@ function App() {
     if(window.ethereum !== "undefined") {
         const accounts = await ethereum.request({ method: "eth_requestAccounts"});
         setAccount(accounts[0]);
-        console.log("Account is  : ",account);
+       
     }
   }
 
   const accessToContract = async () => {
+      console.log("Account is  : ",account);
       window.web3 = await new Web3(window.ethereum);
       window.contract = await new window.web3.eth.Contract( CONTACT_ABI, CONTACT_ADDRESS); 
       console.log("Connected to Smart contract !");
@@ -96,8 +97,8 @@ function App() {
     }
 
     setDataNew2(dataLat);
-    setFS(false);
-    setLC(false);
+    //  setFS(false);
+    //  setLC(false);
     setShowList(true);
   }
 
@@ -160,7 +161,7 @@ function App() {
                                 Price per unit : {item.price_per_unit} Rs<br />
                                 Number of cars already in Queue : {item.waiting_cars} <br />
                                 Fast Charging Supported : {item.fast_charging_support ? "Fast Charging Supported" : "No Fast Charging"} <br />
-                                TATA Ev charging Staion : {item.other_company_station ? "Yes" : "No"}<br />
+                                TATA Ev charging Staion : {item.other_company_station ? "No" : "Yes"}<br />
                                 Rating : {item.ratings} out of 5<br/>
                                 </div>
                             </div>

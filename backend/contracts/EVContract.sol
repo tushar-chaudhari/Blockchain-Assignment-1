@@ -128,9 +128,14 @@ contract EVContract {
         uint counter = 0;
 
         for(uint i = 0; i < cs.length; i++) {
-            if(cs[i].remaining_distance <= _range && cs[i].fast_charging == _fast_charging_support && cs[i].other_company_station == _other_brand_charging_station) {
+            if(cs[i].remaining_distance <= _range && cs[i].fast_charging == _fast_charging_support && _other_brand_charging_station) {
                 temporary[counter] = cs[i];
                 counter++;
+            }else{
+                if(cs[i].remaining_distance <= _range && cs[i].fast_charging == _fast_charging_support && !cs[i].other_company_station){
+                    temporary[counter] = cs[i];
+                    counter++;
+                }
             }
         }
         charging_station[] memory result = new charging_station[](counter);
